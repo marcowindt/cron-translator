@@ -114,6 +114,16 @@ class CronTranslatorTest extends TestCase
         $this->assertCronThrowsParsingError('* * * * 8');
     }
 
+    /** @test */
+    public function it_should_show_24_hour_notation()
+    {
+        $this->assertCronTranslateTo24Hour('Every year on January the 1st at 12:00', '0 12 1 1 *');
+        $this->assertCronTranslateTo24Hour('On Mondays on April the 22nd at 15:10', '10 15 22 4 1');
+        $this->assertCronTranslateTo24Hour('Every minute at 00:00', '* 0 * * *');
+        $this->assertCronTranslateTo24Hour('Every day at 22:00', '0 22 * * *');
+        $this->assertCronTranslateTo24Hour('Every day every 4 months at 00:00', '0 0 * */4 *');
+    }
+
     /**
      * @skip
      * @doesNotPerformAssertions

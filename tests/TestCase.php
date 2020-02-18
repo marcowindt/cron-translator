@@ -13,6 +13,11 @@ class TestCase extends BaseTestCase
         $this->assertEquals($expected, CronTranslator::translate($actual));
     }
 
+    public function assertCronTranslateTo24Hour($expected, $actual)
+    {
+        $this->assertEquals($expected, CronTranslator::translate($actual, false));
+    }
+
     public function assertCronThrowsParsingError($cron)
     {
         try {
