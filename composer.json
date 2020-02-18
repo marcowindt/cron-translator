@@ -1,12 +1,12 @@
 {
-    "name": "lorisleiva/cron-translator",
+    "name": "marcowindt/cron-translator",
     "description": "Makes CRON expressions human-readable",
     "keywords": [
         "cron",
         "expression",
         "human"
     ],
-    "homepage": "https://github.com/lorisleiva/cron-translator",
+    "homepage": "https://github.com/marcowindt/cron-translator",
     "license": "MIT",
     "authors": [
         {
