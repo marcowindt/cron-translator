@@ -1,5 +1,5 @@
 # CRON Translator
-⏰️ Makes CRON expressions human-readable
+⏰️ Makes CRON expressions human-readable, originall from [https://github.com/lorisleiva/cron-translator](https://github.com/lorisleiva/cron-translator)
 
 ![intro-rounded](https://user-images.githubusercontent.com/3642397/60768671-7d6c7100-a0be-11e9-8cee-8a8d2780d76f.png)
 
@@ -28,4 +28,10 @@ CronTranslator::translate('*/2 * * * *');     // => Every 2 minutes
 CronTranslator::translate('* 1/3 2 * *');     // => Every minute of every 3 hours on the 2nd of every month
 CronTranslator::translate('1-3/5 * * * *');   // => 3 times every 5 minutes
 CronTranslator::translate('1,2 0 */2 1,2 *'); // => Twice an hour every 2 days 2 months a year at 12am
+```
+
+Added support for 24 hour clock.
+
+```php
+CronTranslator::translate('0 16 * * 1', false);// => Every Monday at 16:00
 ```

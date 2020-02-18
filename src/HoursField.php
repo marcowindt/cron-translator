@@ -5,6 +5,14 @@ namespace Lorisleiva\CronTranslator;
 class HoursField extends Field
 {
     public $position = 1;
+    protected $useAmPm = true;
+
+    public function __construct($expression, $useAmPm = true)
+    {
+        parent::__construct($expression);
+
+        $this->useAmPm = $useAmPm;
+    }
 
     public function translateEvery($fields)
     {
@@ -51,11 +59,11 @@ class HoursField extends Field
     public function format($minute = null)
     {
         $amOrPm = $this->value < 12 ? 'am' : 'pm';
-        $hour = $this->value === 0 ? 12 : $this->value;
-        $hour = $hour > 12 ? $hour - 12 : $hour;
+        $hour = $this->value === 0 && $this->useAmPm ? 12 : $this->value;
+        $hour = $hour > 12 && $this->useAmPm ? $hour - 12 : $hour;
 
-        return $minute 
-            ? "{$hour}:{$minute->format()}{$amOrPm}" 
-            : "{$hour}{$amOrPm}";
+        return $minute
+            ? $this->useAmPm ? "{$hour}:{$minute->format()}{$amOrPm}" : "{$hour}:{$minute->format()}"
+            : $this->useAmPm ? "{$hour}{$amOrPm}" : "{$hour}";
     }
 }

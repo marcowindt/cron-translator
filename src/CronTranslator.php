@@ -4,10 +4,10 @@ namespace Lorisleiva\CronTranslator;
 
 class CronTranslator
 {
-    public static function translate($cron)
+    public static function translate($cron, $useAmPm = true)
     {
         try {
-            $fields = static::parseFields($cron);
+            $fields = static::parseFields($cron, $useAmPm);
             $orderedFields = static::orderFields($fields);
             $fieldsAsObject = static::getFieldsAsObject($fields);
     
@@ -21,13 +21,13 @@ class CronTranslator
         }
     }
 
-    protected static function parseFields($cron)
+    protected static function parseFields($cron, $useAmPm = true)
     {
         $fields = explode(' ', $cron);
 
         return [
             new MinutesField($fields[0]),
-            new HoursField($fields[1]),
+            new HoursField($fields[1], $useAmPm),
             new DaysOfMonthField($fields[2]),
             new MonthsField($fields[3]),
             new DaysOfWeekField($fields[4]),
